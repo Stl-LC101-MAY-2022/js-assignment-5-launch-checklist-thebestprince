@@ -44,9 +44,10 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let copilotCheck = false;
     let fuelLevelCheck = false;
     let cargoLevelCheck = false;
-    //let check = [pilot, copilot, fuelLevel, cargoLevel]
-    //for(let i=0; i<check.length; i++) {
+    // let check = [pilot, copilot, fuelLevel, cargoLevel]
+    // for(let i=0; i<check.length; i++) {
         if(validateInput(pilot.value === "Not a number")&& validateInput(pilot.value !== "Empty")) {
+            console.log("1")
             pilotCheck = true;
             document.getElementById("pilotStatus").innerHTML =`pilot${pilot.value}Is ready to launch!`
         }else{
@@ -54,8 +55,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
            alert(`${pilotName}is not ready for Launch`)
             alert("Pilot name not valid")
             
-        }
-    
+        
+}
     if(validateInput(copilot.value === "Not a number")&& validateInput(copilot.value !== "Empty")) {
         console.log("hi")
         copilotCheck = true;
@@ -67,7 +68,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }
     if(validateInput(fuelLevel.value === "It's a number")&& validateInput(fuelLevel.value !== "Empty")) {
         fuelLevelCheck = true;
-        document.getElementById("fuelLevelStatus").innerHTML =`fuelLevel${fuelLevel.value}Is good!`
+        document.getElementById("fuelStatus").innerHTML =`fuelLevel${fuelLevel.value}Is good!`
     }else{
         alert("Insuffiencient Fuel!")
     
@@ -76,21 +77,21 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         document.querySelector("faultyItems").style.visibility = "visible";
         status.innerHTML = "Shuttle not ready for launch";
         fuelStatus.innerHTML = "Fuel level not sufficient for journey"
-        document.getElementById("fuelLevelStatus").style.color = "red"; 
+        document.getElementById("fuelStatus").style.color = "red"; 
           
     }
     if(validateInput(cargoLevel.value === "It's a number")&& validateInput(cargoLevel.value !== "Empty")) {
         cargoLevelCheck = true;
-        document.getElementById("cargoLevelStatus").innerHTML =`cargoLevel${cargoLevel.value}Is good!`
+        document.getElementById("cargoStatus").innerHTML =`cargoLevel${cargoLevel.value}Is good!`
     }else{
         alert("Caution Check Cargo Level!")
-    }
-}
+    }};
+
 async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-        });
+      return response.json()  });
 
     return planetsReturned;
 }
