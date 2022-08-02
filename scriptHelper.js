@@ -1,5 +1,5 @@
 // Write your helper functions here!
-require('isomorphic-fetch');
+// require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
     document.getElementById("missionTarget").innerHTML =
@@ -9,7 +9,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 <ol>
                     <li>Name:${name} </li>
                     <li>Diameter:${diameter} </li>
-                    <li>Star: ${star}</li>
+                    <li>Star:${star}</li>
                     <li>Distance from Earth:${distance} </li>
                     <li>Number of Moons:${moon} </li>
                 </ol>
@@ -30,9 +30,7 @@ function validateInput(testInput) {
         return "It's a number"
         
     }
-    
-    
-    
+     
    
 }
 
