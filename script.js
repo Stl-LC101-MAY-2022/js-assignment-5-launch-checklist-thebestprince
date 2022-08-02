@@ -2,7 +2,7 @@
 
 // const { myFetch, pickPlanet } = require("./scriptHelper");
 
-const { formSubmission } = require("./scriptHelper");
+// const { formSubmission } = require("./scriptHelper");
 
 
 window.addEventListener("load", function() {
@@ -14,9 +14,10 @@ window.addEventListener("load", function() {
     let fuelLevel = document.querySelector("input[name=fuelLevel]");
     let cargoMass = document.querySelector("input[name=cargoMass]");
     let form = document.getElementById("launchForm");
-    // let form = document.getElementById("formSubmit");
-    
-
+    let button = document.getElementById("formSubmit");
+    button.addEventListener("click", function(event) {
+        event.preventDefault()
+    })
 
     let listedPlanets;
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
