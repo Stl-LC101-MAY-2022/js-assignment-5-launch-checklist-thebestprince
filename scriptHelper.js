@@ -47,24 +47,28 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         if(validateInput(pilot) === "It's a number" || validateInput(copilot) === "It's a number" || validateInput(fuelLevel) === "Not a number" || validateInput(cargoLevel) === "Not a number")  {
             alert("Input not valid!");
         }else{
+            
+            console.log("Hey",cargoLevel)
             list.style.visibility = "visible";
             pilotStatus.innerHTML = `Pilot ${pilot} ready for launch`;   
             copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`
 
             if(fuelLevel < 10000 ){
+                console.log("Hey",cargoLevel)
                 status.innerHTML = "Shuttle not ready for launch";
                 fuelStatus.innerHTML = "Fuel level not sufficient for journey";
                 status.style.color = "red"; 
             }    
-          
-          else if(cargoLevel > 10000 ){
+           if(cargoLevel > 10000 ){
+            console.log("hi")
             status.innerHTML = "Shuttle not ready for launch";
             cargoStatus.innerHTML = "Cargo level too high";
             status.style.color = "red"; 
             }else{
                 status.innerHTML = "Shuttle ready for launch!";
                 status.style.color = "green"; 
-            }    
+            } 
+       
       }
 }
 
