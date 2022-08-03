@@ -48,7 +48,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             alert("Input not valid!");
         }else{
             
-            console.log("Hey",cargoLevel)
+           
             list.style.visibility = "visible";
             pilotStatus.innerHTML = `Pilot ${pilot} ready for launch`;   
             copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`
