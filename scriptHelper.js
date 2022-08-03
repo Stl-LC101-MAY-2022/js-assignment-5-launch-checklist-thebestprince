@@ -11,23 +11,23 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                     <li>Diameter:${diameter} </li>
                     <li>Star:${star}</li>
                     <li>Distance from Earth:${distance} </li>
-                    <li>Number of Moons:${moon} </li>
+                    <li>Number of Moons:${moons} </li>
                 </ol>
-                <img src="${image}">
+                <img src="${imageUrl}">
   ` 
 }
 
 function validateInput(testInput) {
 
     if(testInput === ''){
-        return "Empty"
+        return "Empty";
     } 
    if(isNaN(testInput)){
-        return "Not a number"
+        return "Not a number";
         
     }
     if(isNaN(testInput) === false){
-        return "It's a number"
+        return "It's a number";
         
     }
      
@@ -35,55 +35,38 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    console.log("hi")
-    let status = document.getElementById("launchStatus")
-    let fuelStatus = document.getElementById("fuelStatus")
-    let pilotCheck = false;
-    let copilotCheck = false;
-    let fuelLevelCheck = false;
-    let cargoLevelCheck = false;
-    // let check = [pilot, copilot, fuelLevel, cargoLevel]
-    // for(let i=0; i<check.length; i++) {
-        if(validateInput(pilot.value === "Not a number")&& validateInput(pilot.value !== "Empty")) {
-            console.log("1")
-            pilotCheck = true;
-            document.getElementById("pilotStatus").innerHTML =`pilot${pilot.value}Is ready to launch!`
+    let status = document.getElementById("launchStatus");
+    let fuelStatus = document.getElementById("fuelStatus");
+    let cargoStatus = document.getElementById("cargoStatus");
+    let copilotStatus = document.getElementById("copilotStatus");
+    let pilotStatus = document.getElementById("pilotStatus");
+   
+        if(validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel)=== "Empty")  {
+          alert("All fields are required!");
+        }
+        if(validateInput(pilot) === "It's a number" || validateInput(copilot) === "It's a number" || validateInput(fuelLevel) === "Not a number" || validateInput(cargoLevel) === "Not a number")  {
+            alert("Input not valid!");
         }else{
-            let pilotStatus = pilotStatus + pilotName;
-           alert(`${pilotName}is not ready for Launch`)
-            alert("Pilot name not valid")
-            
-        
-}
-    if(validateInput(copilot.value === "Not a number")&& validateInput(copilot.value !== "Empty")) {
-        console.log("hi")
-        copilotCheck = true;
-        document.getElementById("copilotStatus").innerHTML =`copilot${copilot.value}Is ready to launch!`
-    }else{
-        let pilotStatus = copilotStatus + copilotName;
-           alert(`${copilotName}is not ready for Launch`)
-        alert("Co-Pilot name not valid")
-    }
-    if(validateInput(fuelLevel.value === "It's a number")&& validateInput(fuelLevel.value !== "Empty")) {
-        fuelLevelCheck = true;
-        document.getElementById("fuelStatus").innerHTML =`fuelLevel${fuelLevel.value}Is good!`
-    }else{
-        alert("Insuffiencient Fuel!")
-    
-    }
-    if(validateInput(fuelLevel.value > 10000 )){
-        document.querySelector("faultyItems").style.visibility = "visible";
-        status.innerHTML = "Shuttle not ready for launch";
-        fuelStatus.innerHTML = "Fuel level not sufficient for journey"
-        document.getElementById("fuelStatus").style.color = "red"; 
+            list.style.visibility = "visible";
+            pilotStatus.innerHTML = `Pilot ${pilot} ready for launch`;   
+            copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`
+
+            if(fuelLevel < 10000 ){
+                status.innerHTML = "Shuttle not ready for launch";
+                fuelStatus.innerHTML = "Fuel level not sufficient for journey";
+                status.style.color = "red"; 
+            }    
           
-    }
-    if(validateInput(cargoLevel.value === "It's a number")&& validateInput(cargoLevel.value !== "Empty")) {
-        cargoLevelCheck = true;
-        document.getElementById("cargoStatus").innerHTML =`cargoLevel${cargoLevel.value}Is good!`
-    }else{
-        alert("Caution Check Cargo Level!")
-    }};
+          else if(cargoLevel > 10000 ){
+            status.innerHTML = "Shuttle not ready for launch";
+            cargoStatus.innerHTML = "Cargo level too high";
+            status.style.color = "red"; 
+            }else{
+                status.innerHTML = "Shuttle ready for launch!";
+                status.style.color = "green"; 
+            }    
+      }
+}
 
 async function myFetch() {
     let planetsReturned;
