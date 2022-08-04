@@ -1,5 +1,7 @@
 // Write your JavaScript code here!
 
+const { myFetch } = require("./scriptHelper");
+
 window.addEventListener("load", function() {
     console.log("Click button")
 

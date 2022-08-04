@@ -22,11 +22,11 @@ function validateInput(testInput) {
     if(testInput === ''){
         return "Empty";
     } 
-   if(isNaN(testInput)){
+   if(isNaN(Number(testInput))){
         return "Not a number";
         
     }
-    if(isNaN(testInput) === false){
+    if(isNaN(Number(testInput)) === false){
         return "It's a number";
         
     }
@@ -44,26 +44,36 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         if(validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel)=== "Empty")  {
           alert("All fields are required!");
         }
-        if(validateInput(pilot) === "It's a number" || validateInput(copilot) === "It's a number" || validateInput(fuelLevel) === "Not a number" || validateInput(cargoLevel) === "Not a number")  {
+        else if(validateInput(pilot) === "It's a number" || validateInput(copilot) === "It's a number" || validateInput(fuelLevel) === "Not a number" || validateInput(cargoLevel) === "Not a number")  {
             alert("Input not valid!");
         }else{
             
            
             list.style.visibility = "visible";
             pilotStatus.innerHTML = `Pilot ${pilot} ready for launch`;   
-            copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`
+            copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
 
-            if(fuelLevel < 10000 ){
+            if(fuelLevel < 10000 && cargoLevel > 10000) {
                 console.log("Hey",cargoLevel)
                 status.innerHTML = "Shuttle not ready for launch";
                 fuelStatus.innerHTML = "Fuel level not sufficient for journey";
+                cargoStatus.innerHTML = "Cargo level too high";
                 status.style.color = "red"; 
-            }    
-           if(cargoLevel > 10000 ){
-            console.log("hi")
-            status.innerHTML = "Shuttle not ready for launch";
-            cargoStatus.innerHTML = "Cargo level too high";
-            status.style.color = "red"; 
+            }else if(fuelLevel > 10000 && cargoLevel > 10000) {
+                console.log("Hey",cargoLevel)
+                status.innerHTML = "Shuttle not ready for launch";
+                fuelStatus.innerHTML = "Fuel level sufficient for journey";
+                cargoStatus.innerHTML = "Cargo level too high";
+                status.style.color = "red"; 
+            
+            }else if(fuelLevel < 10000 && cargoLevel < 10000) {
+                console.log("Hey",cargoLevel)
+                status.innerHTML = "Shuttle not ready for launch";
+                fuelStatus.innerHTML = "Fuel level not sufficient for journey";
+                cargoStatus.innerHTML = "Cargo level sufficient";
+                status.style.color = "red";  
+            
+              
             }else{
                 status.innerHTML = "Shuttle ready for launch!";
                 status.style.color = "green"; 
