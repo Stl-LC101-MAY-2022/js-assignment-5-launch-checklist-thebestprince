@@ -1,6 +1,6 @@
 // Write your JavaScript code here!
 
-const { myFetch } = require("./scriptHelper");
+const { myFetch, pickPlanet, addDestinationInfo } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
     console.log("Click button")
